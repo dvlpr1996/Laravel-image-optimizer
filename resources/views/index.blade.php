@@ -35,7 +35,8 @@
 										upload your image to compress them or upload css js file to minify them
 								</p>
 						</div>
-
+            {{-- <div class="img-uploaded"></div> --}}
+            <x-error></x-error>
 						<div class="my-6 mx-auto">
 								<div class="uploader">
 										<form action="{{ route('action') }}" method="POST" id="uploader" enctype="multipart/form-data"

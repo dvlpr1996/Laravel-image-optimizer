@@ -15,12 +15,11 @@ class FileRequest extends FormRequest
     {
         return [
             "files" => [
-                "required", "file", "max:2000", "filled",
-                "mimes:png,jpeg,css,html,js,jpg"
+                "required"
             ],
             "files.*" => [
                 "file", "max:2000", "filled",
-                "mimes:png,jpeg,css,html,js,jpg"
+                // "mimes:png,jpeg,html,jpg,css,js"
             ]
         ];
     }

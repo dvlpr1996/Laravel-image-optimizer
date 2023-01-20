@@ -1,18 +1,6 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
@@ -158,8 +146,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'files' => [
+            'required' => 'you must select your file(s) first',
+            'file' => 'your file does not valid',
+            'mimes' => 'your file type is not allowed'
+        ],
+        'files.*' => [
+            'required' => 'you must select your file(s) first',
+            'file' => 'your file does not valid',
+            'mimes' => 'your file type is not allowed'
         ],
     ],
 
