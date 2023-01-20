@@ -25,7 +25,7 @@
 	<![endif] -->
 </head>
 
-<body class="bg-primary px-4 sm:px-0 font-['Open_Sans'] capitalize">
+<body class="bg-primary px-4 font-['Open_Sans'] capitalize sm:px-0">
 		<main class="flex min-h-screen items-center justify-center p-4">
 				<div class="w-[500px] rounded-xl bg-white p-5 text-center">
 
@@ -38,21 +38,20 @@
 
 						<div class="my-6 mx-auto">
 								<div class="uploader">
-										<form action="" method="POST" id="uploader" enctype="multipart/form-data"
+										<form action="{{ route('action') }}" method="POST" id="uploader" enctype="multipart/form-data"
 												class="flex h-full flex-col items-center justify-center gap-5">
 												@csrf
 												<i id="icon" class="fa fa-upload text-5xl"></i>
 												<input type="file" name="files[]" id="file-input"
 														class="absolute top-0 left-0 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-0"
 														accept="image/png, image/jpeg ,text/html, text/javascript, text/css" multiple>
-                            
+
 												<div class="select-none">
 														<h3>Drag and drop your files or click here</h3>
 												</div>
 										</form>
 								</div>
-
-								<button type="submit" name="upload" class="btn" form="uploader">upload</button>
+                <button type="submit" name="upload" class="btn" form="uploader">upload</button>
 						</div>
 
 				</div>

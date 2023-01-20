@@ -24,7 +24,6 @@
 	}
 
 	.btn {
-		@apply py-3 px-16 border-none outline-none rounded-[50px] text-white capitalize select-none
-		cursor-pointer mt-5;
+		@apply bg-cyan-400 hover:bg-cyan-500 py-2 px-20 border-none outline-none rounded-[50px] text-white font-bold capitalize select-none cursor-pointer mt-5 tracking-wide;
 	}
 }
