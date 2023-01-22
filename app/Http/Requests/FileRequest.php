@@ -19,7 +19,7 @@ class FileRequest extends FormRequest
             ],
             "files.*" => [
                 "file", "max:2000", "filled",
-                // "mimes:png,jpeg,html,jpg,css,js"
+                "mimes:png,jpeg,html,jpg,css,js"
             ]
         ];
     }
