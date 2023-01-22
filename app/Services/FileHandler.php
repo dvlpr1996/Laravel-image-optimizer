@@ -2,14 +2,28 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Config;
+
 class FileHandler
 {
-    public function __construct(
-        private $assetPath,
-        private $imagePath,
-        private $imageType = ['image/png', 'image/jpeg'],
-        private $assetType = ['text/css', 'text/javascript', 'text/html'],
-    ) {
+    private $imageType = ['image/png', 'image/jpeg'];
+    private $assetType = ['text/css', 'text/javascript', 'text/html'];
+
+    public function assetPath()
+    {
+        return storage_path(Config::get('path.assetPath'));
+    }
+
+    public function imagePath()
+    {
+        return storage_path(Config::get('path.imagePath'));
+    }
+
+    public function generateFileName($file): string
+    {
+        $randomName = Str::slug(Config::get('app.name') . '-' . mt_rand(0, time()));
+        return  $randomName . '.' . $this->getFileExtension($file);
     }
 
     public function getFileType($file): string
@@ -56,6 +70,13 @@ class FileHandler
     public function isImage($file)
     {
         if ($this->checkType($file) !== 'img')
+            return false;
+        return true;
+    }
+
+    public function isAsset($file)
+    {
+        if (!in_array($file, ['html', 'css', 'js']))
             return false;
         return true;
     }

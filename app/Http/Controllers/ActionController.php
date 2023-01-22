@@ -2,38 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Uploader;
 use App\Services\FileHandler;
 use App\Http\Requests\FileRequest;
 
 class ActionController extends Controller
 {
-    private $assetPath;
-    private $imagePath;
-    private $fileHandler;
-
-    public function __construct()
-    {
-        $this->fileHandler = new FileHandler($this->imagePathSetter(), $this->assetPathSetter());
-    }
-
-    private function assetPathSetter()
-    {
-        $this->assetPath = storage_path('app/asset/');
-    }
-
-    private function imagePathSetter()
-    {
-        $this->imagePath = storage_path('app/img/');
+    public function __construct(
+        private $fileHandler = new FileHandler,
+        private $uploader = new Uploader,
+    ) {
     }
 
     public function action(FileRequest $request)
     {
         foreach ($request->file('files') as $file) {
             if ($this->fileHandler->isImage($file)) {
+                $this->uploader->uploadImage($file);
+                return back()->with('success','image successfully uploaded');
+            }
 
+            if ($this->fileHandler->isAsset($file)) {
+                $this->uploader->uploadAssets($file);
+                return back()->with('success','asset successfully uploaded');
             }
         }
-        # file type
-        # action based on file type    design patter
     }
 }
