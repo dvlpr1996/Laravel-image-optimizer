@@ -19,6 +19,7 @@ class Uploader
         $image = Image::make($imageFile);
         $filePath = $this->fileHandler->generateFileName($imageFile);
         $img = $image->save($this->fileHandler->imagePath() . $filePath);
+        
         if (!$img) abort(500, 'image does not successfully uploaded. try again');
         return true;
     }

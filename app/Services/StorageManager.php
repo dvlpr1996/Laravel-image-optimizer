@@ -2,10 +2,17 @@
 
 namespace App\Services;
 
+use Exception;
+use App\Services\Zip;
 use Illuminate\Support\Facades\Storage;
 
 class StorageManager
 {
+    public function __construct(
+        private $zip = new Zip,
+    ) {
+    }
+
     public static function checkDirExists(string $dir)
     {
         if (!Storage::exists($dir)) {
@@ -13,11 +20,17 @@ class StorageManager
         }
     }
 
-    public static function deleteFile()
+    public function deleteFile()
     {
     }
-    
-    public static function downloadFile()
+
+    public function downloadFile($pathToDownload)
     {
+        try {
+            $this->zip->zipFiles($pathToDownload);
+            return response()->download($this->zip->zipFileName($pathToDownload));
+        } catch (Exception $exception) {
+            return back()->withError("Something went wrong {$exception}");
+        }
     }
 }

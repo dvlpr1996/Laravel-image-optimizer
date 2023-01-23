@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Services\Uploader;
 use App\Services\FileHandler;
+use App\Services\StorageManager;
 use App\Http\Requests\FileRequest;
 
 class ActionController extends Controller
 {
     public function __construct(
+        private $storageManager = new StorageManager,
         private $fileHandler = new FileHandler,
         private $uploader = new Uploader,
     ) {
@@ -19,12 +21,13 @@ class ActionController extends Controller
         foreach ($request->file('files') as $file) {
             if ($this->fileHandler->isImage($file)) {
                 $this->uploader->uploadImage($file);
-                return back()->with('success','image successfully uploaded');
+                // return $this->storageManager->downloadFile('img/');
+                return back()->with('success', 'image successfully uploaded');
             }
 
             if ($this->fileHandler->isAsset($file)) {
                 $this->uploader->uploadAssets($file);
-                return back()->with('success','asset successfully uploaded');
+                return back()->with('success', 'asset successfully uploaded');
             }
         }
     }

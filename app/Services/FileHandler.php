@@ -26,6 +26,11 @@ class FileHandler
         return  $randomName . '.' . $this->getFileExtension($file);
     }
 
+    // public function downloadPath()
+    // {
+    //     return
+    // }
+
     public function getFileType($file): string
     {
         return $file->getMimeType();
