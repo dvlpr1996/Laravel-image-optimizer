@@ -29,8 +29,8 @@ class StorageManager
         try {
             $this->zip->zipFiles($pathToDownload);
             return response()->download($this->zip->zipFileName($pathToDownload));
-        } catch (Exception $exception) {
-            return back()->withError("Something went wrong {$exception}");
+        } catch (Exception $e) {
+            return back()->withError("Something went wrong try again");
         }
     }
 }

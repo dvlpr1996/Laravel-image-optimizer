@@ -12,24 +12,19 @@ class FileHandler
 
     public function assetPath()
     {
-        return storage_path(Config::get('path.assetPath'));
+        return fullAssetPath();
     }
 
     public function imagePath()
     {
-        return storage_path(Config::get('path.imagePath'));
+        return fullImagePath();
     }
 
     public function generateFileName($file): string
     {
-        $randomName = Str::slug(Config::get('app.name') . '-' . mt_rand(0, time()));
+        $randomName = Str::slug(appName() . '-' . mt_rand(0, time()));
         return  $randomName . '.' . $this->getFileExtension($file);
     }
-
-    // public function downloadPath()
-    // {
-    //     return
-    // }
 
     public function getFileType($file): string
     {

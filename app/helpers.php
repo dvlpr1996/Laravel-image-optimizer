@@ -23,6 +23,3 @@ function appName(): string
     return Str::slug(Config::get('app.name'));
 }
 
-// function assetPath(string $path = ''): string
-// {
-// }
