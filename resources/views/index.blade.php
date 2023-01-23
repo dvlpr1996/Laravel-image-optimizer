@@ -30,9 +30,9 @@
 				<div class="w-[500px] rounded-xl bg-white p-5 text-center">
 
 						<div class="space-y-3 text-center">
-								<h1 class="text-4xl">file Optimizer</h1>
+								<h1 class="text-4xl">Image Optimizer</h1>
 								<p class="mx-auto w-full text-lg sm:w-3/4">
-										upload your image to compress them or upload css js file to minify them
+										upload your image to compress them
 								</p>
 						</div>
             {{-- <div class="img-uploaded"></div> --}}

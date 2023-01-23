@@ -149,12 +149,12 @@ return [
         'files' => [
             'required' => 'you must select your file(s) first',
             'file' => 'your file does not valid',
-            'mimes' => 'your file type is not allowed'
+            'mimes' => 'your file type is not allowed',
         ],
         'files.*' => [
             'required' => 'you must select your file(s) first',
             'file' => 'your file does not valid',
-            'mimes' => 'your file type is not allowed'
+            'mimes' => 'your file type is not allowed',
         ],
     ],
 

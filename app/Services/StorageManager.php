@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Exception;
-use App\Services\Zip;
 use Illuminate\Support\Facades\Storage;
 
 class StorageManager
@@ -15,7 +14,7 @@ class StorageManager
 
     public static function checkDirExists(string $dir)
     {
-        if (!Storage::exists($dir)) {
+        if (! Storage::exists($dir)) {
             Storage::makeDirectory($dir);
         }
     }
@@ -28,9 +27,10 @@ class StorageManager
     {
         try {
             $this->zip->zipFiles($pathToDownload);
+
             return response()->download($this->zip->zipFileName($pathToDownload));
         } catch (Exception $e) {
-            return back()->withError("Something went wrong try again");
+            return back()->withError(__('app.error'));
         }
     }
 }

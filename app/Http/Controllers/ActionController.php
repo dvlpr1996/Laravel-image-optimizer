@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Uploader;
+use App\Http\Requests\FileRequest;
 use App\Services\FileHandler;
 use App\Services\StorageManager;
-use App\Http\Requests\FileRequest;
+use App\Services\Uploader;
 
 class ActionController extends Controller
 {
@@ -22,12 +22,7 @@ class ActionController extends Controller
             if ($this->fileHandler->isImage($file)) {
                 $this->uploader->uploadImage($file);
                 // return $this->storageManager->downloadFile('img/');
-                return back()->with('success', 'image successfully uploaded');
-            }
-
-            if ($this->fileHandler->isAsset($file)) {
-                $this->uploader->uploadAssets($file);
-                return back()->with('success', 'asset successfully uploaded');
+                return back()->with('success', __('app.img_upload_ok'));
             }
         }
     }

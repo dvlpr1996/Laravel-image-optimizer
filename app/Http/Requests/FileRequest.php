@@ -14,13 +14,13 @@ class FileRequest extends FormRequest
     public function rules()
     {
         return [
-            "files" => [
-                "required"
+            'files' => [
+                'required',
             ],
-            "files.*" => [
-                "file", "max:2000", "filled",
-                "mimes:png,jpeg,html,jpg,css,js"
-            ]
+            'files.*' => [
+                'file', 'max:2000', 'filled',
+                'mimes:png,jpeg,html,jpg,css,js',
+            ],
         ];
     }
 }
