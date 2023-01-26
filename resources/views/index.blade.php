@@ -35,8 +35,8 @@
 										upload your image to compress them
 								</p>
 						</div>
-            {{-- <div class="img-uploaded"></div> --}}
-            <x-error></x-error>
+						{{-- <div class="img-uploaded"></div> --}}
+						<x-error></x-error>
 						<div class="my-6 mx-auto">
 								<div class="uploader">
 										<form action="{{ route('action') }}" method="POST" id="uploader" enctype="multipart/form-data"
@@ -52,7 +52,8 @@
 												</div>
 										</form>
 								</div>
-                <button type="submit" name="upload" class="btn" form="uploader">upload</button>
+								<a href="{{ route('download') }}">download</a>
+								<button type="submit" name="upload" class="btn" form="uploader">upload</button>
 						</div>
 
 				</div>
