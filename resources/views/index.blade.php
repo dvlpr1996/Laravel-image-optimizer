@@ -52,10 +52,15 @@
 												</div>
 										</form>
 								</div>
-								<a href="{{ route('download') }}">download</a>
 								<button type="submit" name="upload" class="btn" form="uploader">upload</button>
 						</div>
 
+						@if (hasFile())
+								<div class="mt-5 flex items-center justify-between rounded-lg bg-cyan-400 p-5">
+										<p class="font-bold">your file</p>
+										<a href="{{ route('download') }}">download</a>
+								</div>
+						@endif
 				</div>
 		</main>
 

@@ -26,18 +26,18 @@ class StorageManager
         $filtered = $fileCollection->filter(function ($value, $key) {
             return Storage::mimeType($value) !== 'application/zip';
         });
-        
+
         foreach ($filtered->all() as $key => $file) {
             Storage::delete($file);
         }
     }
 
-    public function downloadFile($pathToDownload)
+    public function downloadFile($pathToDownload, array $header = [])
     {
         try {
             $this->zip->zipFiles($pathToDownload);
             $this->deleteFile($pathToDownload);
-            return response()->download($this->zip->zipFileName($pathToDownload))->deleteFileAfterSend(true);
+            return response()->download($this->zip->zipFileName($pathToDownload), headers: $header)->deleteFileAfterSend(true);
         } catch (Exception $e) {
             return back()->withError(__('app.error'));
         }
