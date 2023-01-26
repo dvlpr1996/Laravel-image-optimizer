@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use Exception;
+use App\Services\Zip;
+use App\Services\FileHandler;
 use Illuminate\Support\Facades\Storage;
 
 class StorageManager
@@ -30,6 +32,14 @@ class StorageManager
         foreach ($filtered->all() as $key => $file) {
             Storage::delete($file);
         }
+    }
+
+    public function checkDownloadFileExists(string $dir): bool
+    {
+        if (!Storage::exists($dir) || !Storage::has($this->zip->zipFileName($dir))) {
+            return false;
+        }
+        return true;
     }
 
     public function downloadFile($pathToDownload, array $header = [])

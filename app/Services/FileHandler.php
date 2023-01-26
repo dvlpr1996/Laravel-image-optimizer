@@ -16,7 +16,6 @@ class FileHandler
     public function generateFileName($file): string
     {
         $randomName = Str::slug(appName() . '-' . mt_rand(0, time()));
-
         return  $randomName . '.' . $this->getFileExtension($file);
     }
 

@@ -7,7 +7,6 @@ use App\Services\Uploader;
 use App\Services\StorageManager;
 use App\Http\Requests\FileRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class ActionController extends Controller
 {
@@ -30,8 +29,12 @@ class ActionController extends Controller
 
     public function download()
     {
-        if (!Storage::exists('img/') && !Storage::has($this->zip->zipFileName('img/')))
-            httpResponse(__('app.file_not_found'), '404');
-        return $this->storageManager->downloadFile('img/', ['Content-Type:application/zip']);
+        if ($this->storageManager->checkDownloadFileExists('img/')) {
+            return httpResponse(__('app.file_not_found'), '404');
+        }
+        return $this->storageManager->downloadFile('img/', [
+            'Content-Type:application/zip',
+            'Accept-Encoding:zip'
+        ]);
     }
 }

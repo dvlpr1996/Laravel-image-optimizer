@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Zip;
 use App\Services\Uploader;
 use App\Services\StorageManager;
 use App\Http\Requests\FileRequest;
@@ -12,6 +13,7 @@ class ActionController extends Controller
     public function __construct(
         private $storageManager = new StorageManager,
         private $uploader = new Uploader,
+        private $zip = new Zip,
     ) {
     }
 
@@ -19,7 +21,7 @@ class ActionController extends Controller
     {
         foreach ($request->file('files') as $file) {
             if ($this->uploader->uploadImage($file)) {
-                return back()->with('success', __('app.img_upload_ok'));
+                return view('index')->with('success', __('app.img_upload_ok'));
             }
             return back()->withErrors('errors', __('app.img_upload_error'));
         }
@@ -27,7 +29,7 @@ class ActionController extends Controller
 
     public function download()
     {
-        if (!Storage::exists('img/'))
+        if ($this->storageManager->checkDownloadFileExists('img/'))
             abort(404);
         return $this->storageManager->downloadFile('img/');
     }
